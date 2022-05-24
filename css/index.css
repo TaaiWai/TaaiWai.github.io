@@ -1909,7 +1909,7 @@ figure.highlight pre .javascript .function {
 .error404 #error-wrap .error-content .error-img {
   display: inline-block;
   overflow: hidden;
-  width: auto;
+  width: 50%;
   height: 100%;
 }
 @media screen and (max-width: 768px) {
@@ -1943,7 +1943,7 @@ figure.highlight pre .javascript .function {
   -ms-flex-line-pack: center;
   -webkit-align-content: center;
   align-content: center;
-  width: 65%;
+  width: 50%;
   height: 100%;
   vertical-align: top;
   text-align: center;
