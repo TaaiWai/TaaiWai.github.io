@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'FiraCode' ;
+  src: url("../diy-fonts/FiraCode-Regular-1.ttf");
+}
+
+@font-face {
+  font-family: 'NotoSansCJK';
+  src: url("../diy-fonts/NotoSansCJK-Regular-1.otf");
+}
+
+#footer {
+  background: transparent;
+}
+
+#footer-wrap {
+  color: slateblue;
+}
+
+#footer-wrap a {
+  color: slateblue;
+}
+
+.footer-text {
+  color: slateblue;
+}
