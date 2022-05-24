@@ -8,6 +8,10 @@
   src: url("../diy-fonts/NotoSansCJK-Regular-1.otf");
 }
 
+#page-header {
+  background-color: transparent;
+}
+
 #footer {
   background: transparent;
 }
