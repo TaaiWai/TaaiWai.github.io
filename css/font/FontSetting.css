@@ -1,0 +1,13 @@
+@font-face
+{
+    font-family: 'NotoSerifSC';
+    font-display: swap;
+    src: url('./NotoSerifSC-Regular.otf') format("opentype");
+}
+
+@font-face
+{
+    font-family: 'JetBrainsMono';
+    font-display: swap;
+    src: url('./JetBrainsMono-Regular-2.ttf') format("truetype");
+}
