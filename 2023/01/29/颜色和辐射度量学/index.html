@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>颜色和辐射度量学 | 登高望远，湛蓝无限</title><meta name="author" content="Guo"><meta name="copyright" content="Guo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="主要整理自《PBRT》一书的第五章">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>颜色和辐射度量学 | 登高望远，湛蓝无限</title><meta name="author" content="Guo"><meta name="copyright" content="Guo"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="主要整理自《PBRT》一书的第五章和一些补充内容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="颜色和辐射度量学">
 <meta property="og:url" content="http://taaiwai.github.io/2023/01/29/%E9%A2%9C%E8%89%B2%E5%92%8C%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/index.html">
 <meta property="og:site_name" content="登高望远，湛蓝无限">
-<meta property="og:description" content="主要整理自《PBRT》一书的第五章">
+<meta property="og:description" content="主要整理自《PBRT》一书的第五章和一些补充内容">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:published_time" content="2023-01-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-01-29T09:32:26.532Z">
+<meta property="article:modified_time" content="2023-01-29T15:54:14.946Z">
 <meta property="article:author" content="Guo">
 <meta property="article:tag" content="PBRT">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-01-29 17:32:26'
+  postUpdate: '2023-01-29 23:54:14'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -155,23 +155,160 @@
       }
     }
     detectApple()
-    })(window)</script><link rel="stylesheet" href="/css/font/FontSetting.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="登高望远，湛蓝无限"><span class="site-name">登高望远，湛蓝无限</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">颜色和辐射度量学</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-28T16:00:00.000Z" title="发表于 2023-01-29 00:00:00">2023-01-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-29T09:32:26.532Z" title="更新于 2023-01-29 17:32:26">2023-01-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PBRT/">PBRT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="颜色和辐射度量学"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>&emsp;为了精确描述光是怎样被表示和采样以计算图像，我们必须首先建立一些<strong>辐射度量学</strong>的背景——<strong>电磁辐射</strong>在环境中传播的研究。在渲染中，我们感兴趣的是<strong>波长</strong>$(\lambda)$约在380nm到780nm的电磁辐射，主要是人眼可见光。较短波长$(\lambda\approx400nm)$偏蓝色，中间波长$(\lambda\approx550nm)$是绿色的，而较长波长$(\lambda\approx650nm)$是红色的。</p>
+    })(window)</script><link rel="stylesheet" href="/css/font/FontSetting.css"><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="登高望远，湛蓝无限"><span class="site-name">登高望远，湛蓝无限</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">颜色和辐射度量学</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-28T16:00:00.000Z" title="发表于 2023-01-29 00:00:00">2023-01-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-01-29T15:54:14.946Z" title="更新于 2023-01-29 23:54:14">2023-01-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PBRT/">PBRT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="颜色和辐射度量学"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>&emsp;为了精确描述光是怎样被表示和采样以计算图像，我们必须首先建立一些<strong>辐射度量学</strong>的背景——<strong>电磁辐射</strong>在环境中传播的研究。在渲染中，我们感兴趣的是<strong>波长</strong>$(\lambda)$约在380nm到780nm的电磁辐射，主要是人眼可见光。较短波长$(\lambda\approx400nm)$偏蓝色，中间波长$(\lambda\approx550nm)$是绿色的，而较长波长$(\lambda\approx650nm)$是红色的。</p>
 <p>&emsp;在这里，我们对描述电磁辐射的四个关键量感兴趣：<strong>通量(flux)</strong>、<strong>强度(intensity)</strong>、<strong>辐射照度(irradiance)/辐射出射度(radiant exitance)</strong>、<strong>辐射亮度(radiance)</strong>。这些辐射量分别由它们的<strong>光谱功率分布(spectral power distribution)(SPD)</strong> 描述，这是一种波长分布函数，描述了每个波长的光量。</p>
+<hr>
+<h3 id="色度学"><a href="#色度学" class="headerlink" title="色度学"></a>色度学</h3><p>&emsp;真实世界物体的SPD可能极其复杂，下面展示了荧光灯发光的频谱分布和柠檬皮反射率的频谱分布图。在PBRT中，是通过寻找一组优良的<strong>基函数</strong>来表示SPD，这将SPD函数的无限维空间映射到$c\in{\mathbb{R}}$的低维空间，PBRT有两种表示SPD的方法，一种是对SPD进行等间隔采样得到一组系数$((\lambda_1,c_1),…,(\lambda_n,c_n))$，另一种是用红绿蓝加权和来表示SPD。<br><img src="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/fluorescent-spd.svg" alt="荧光灯发光的频谱分布" width="50%"><img src="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/lemonskin-spd.svg" alt="柠檬皮反射率的频谱分布" width="50%"></p>
+<h4 id="颜色匹配"><a href="#颜色匹配" class="headerlink" title="颜色匹配"></a>颜色匹配</h4><p>&emsp;<strong>颜色混合(color mixing)</strong>可以是颜色光的混合，也可以是染料的混合，前者是<strong>加色混合(additive mixing)</strong>，后者是<strong>减色混合(subtractive mixing)</strong>。<br>&emsp;在渲染中，我们对加色混合更感兴趣，1854年，格拉斯曼总结出了以下几条实验规律，称为格拉斯曼定律:<br>&emsp;1. 人眼的视觉只能分辨颜色的3种变化：明度，色调和饱和度。<br>&emsp;2. 在由两个成分组成的混合色中，如果其中一种连续变化，则混合色的外观也连续变化，由此推导出两条定律。<br>&emsp;&emsp;<strong>补色律</strong>：每种颜色都有一个相应的补色，某一颜色与其补色以适当比例混合，便产生白色或灰色，以其他比例混合，便产生近似比重大的颜色成分的中间色。<br>&emsp;&emsp;<strong>中间色律</strong>：任何两个非补色混合，便产生中间色，其色调取决于两个颜色的相对数量，其饱和度取决于两者在颜色顺序上的远近。<br>&emsp;3. 设$\mathbf{A}\equiv\mathbf{B}$，$\mathbf{C}\equiv\mathbf{D}$，那么有</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\mathbf{A}+\mathbf{C}&\equiv{\mathbf{B}+\mathbf{D}}\\
+\mathbf{A}-\mathbf{C}&\equiv{\mathbf{B}-\mathbf{D}}\\
+\alpha\mathbf{A}&\equiv\alpha\mathbf{B}
+\end{split}\tag{1}</script><p>&emsp;其中，$\alpha&gt;0$，由此可知，外观相同的颜色在加色混合和减色混合是等效的。<br>&emsp;4. 混合色的总亮度等于组成混合色的各颜色光亮度的总合。</p>
+<p>&emsp;CIE使用波长分别为700nm，546.1nm，435.8nm的单色光作为三原色进行颜色匹配实验。为了确定单位，CIE规定能匹配<strong>等能白光(equal-energy white)</strong>，也称<strong>E光源(illuminant E)</strong>，即整个光谱功率分布都为常数的混合光，颜色接近白色，是一种理论光源，且使得三刺激值全等$(R=G=B)$的三原色比例作为色度学单位。结果是红绿蓝光亮度之比为$1:4.5907:0.0601$作为三刺激值的单位。<br><img src="/img/post_img/color_and_radiometry/color_matching.jpg" alt="颜色匹配实验" width="50%" align="center"></p>
+<p>&emsp;单个波长的色光称为<strong>光谱色</strong>。CIE依据历史和实验测定了匹配等能光谱色的RGB三刺激值，规范化后得到RGB的颜色匹配函数，记作$\overline{r}(\lambda)，\overline{g}(\lambda)，\overline{b}(\lambda)$。<br><img src="/img/post_img/color_and_radiometry/CIE1931_RGBCMF.png" alt="CIE RGB颜色匹配函数 $2^\circ{视场}$" width="50%" height="50%" align="center"><br>&emsp;这里出现负数的原因是，对于某些颜色光$\mathbf{C}$，无法用$\mathbf{R,G,B}$三种色光匹配得到，即</p>
+<script type="math/tex; mode=display">
+\mathbf{C}\equiv r\mathbf{R}+g\mathbf{G}+b\mathbf{B}</script><p>&emsp;但是，可以将$\mathbf{R}$放到左边使得</p>
+<script type="math/tex; mode=display">
+c\mathbf{C}+r\mathbf{R}\equiv g\mathbf{G}+b\mathbf{B}\Rightarrow c\mathbf{C}\equiv -r\mathbf{R}+g\mathbf{G}+b\mathbf{B}</script><p>&emsp;因此出现了负数。<br>&emsp;给定光谱分布为$S(\lambda)$的函数，相应的$\mathbf{RGB}$颜色的三刺激值$RGB$可以通过在颜色匹配函数上积分算得:</p>
+<script type="math/tex; mode=display">
+\begin{split}
+R=k\int{\overline{r}(\lambda)S(\lambda)}d\lambda\\
+G=k\int{\overline{g}(\lambda)S(\lambda)}d\lambda\\
+B=k\int{\overline{b}(\lambda)S(\lambda)}d\lambda\\
+\end{split}</script><p>&emsp;其中，$k$为适当的规范化系数。</p>
+<p><strong><em>CIE 1931 颜色空间</em></strong><br>&emsp;对于$\mathbf{RGB}$三刺激值为$R,G,B$的颜色，定义其色品(chromaticity)为</p>
+<script type="math/tex; mode=display">
+\begin{split}
+r&=\frac{R}{R+G+B}\\
+g&=\frac{G}{R+G+B}\\
+b&=\frac{B}{R+G+B}\\
+r+g+b&=1\Rightarrow r+g=1-b
+\end{split}</script><p>&emsp;选中r和g作为坐标，可以构建出rg色品图。<br><img src="/img/post_img/color_and_radiometry/CIE1931_rgxy.png" alt="rg色品图 其中E为等能白光，$C_r,C_g,C_b$分别是XYZ三原色的色品点" width="50%" align="center"><br>&emsp;因为$\mathbf{RGB}$颜色匹配函数有负数不便理解和使用，CIE为了解决这个问题，提出了用$\mathbf{XYZ}$三原色来构建新的颜色空间以消除负值。<br>&emsp;1. 规定$\mathbf{X}$和$\mathbf{Z}$只表示色调，与亮度无光。<br>&emsp;2. 所有光谱三刺激值均为非负数。<br>&emsp;3. rg色品图中光谱轨迹从540nm附近到700nm近乎一条直线，这段线段上的任意两种颜色加色混合可匹配两色之间的各种光谱色。因此希望$\mathbf{X}$和$\mathbf{Y}$的连线与该线段重合，使其只与$\mathbf{X}$和$\mathbf{Y}$的变化有关，与$\mathbf{Z}$无关。<br>&emsp;以此构建出的颜色空间叫<strong>CIE 1931 XYZ颜色空间</strong>(CIE 1931 XYZ color space)。注意$\mathbf{X}$、$\mathbf{Y}$、$\mathbf{Z}$是理论假想色，现实无法观察到。颜色匹配方程为</p>
+<script type="math/tex; mode=display">
+c\mathbf{C}\equiv x\mathbf{X}+y\mathbf{Y}+z\mathbf{Z}</script><p>&emsp;与RGB类似，我们可以得到对应于光谱色的CIE XYZ颜色匹配函数$\overline{x}(\lambda),\overline{y}(\lambda),\overline{z}(\lambda)$以及xy色品图。<br><img src="/img/post_img/color_and_radiometry/CIE_1931_XYZ_Color_Matching_Functions.svg" alt="CIE XYZ颜色匹配函数" width="50%" align="center"><br><img src="/img/post_img/color_and_radiometry/CIE1931xy_blank.svg" alt="xy色品图" width="50%" align="center"><br>&emsp;同理有</p>
+<script type="math/tex; mode=display">
+\begin{split}
+X=k\int{S(\lambda)\overline{x}(\lambda)}d\lambda\\
+Y=k\int{S(\lambda)\overline{y}(\lambda)}d\lambda\\
+Z=k\int{S(\lambda)\overline{z}(\lambda)}d\lambda
+\end{split}</script><p>&emsp;其中k为适当的规范化系数。</p>
+<h4 id="颜色空间的转化"><a href="#颜色空间的转化" class="headerlink" title="颜色空间的转化"></a>颜色空间的转化</h4><p>&emsp;为了将$\mathbf{XYZ}$空间转化为$\mathbf{RGB}$空间，设新空间的三原色$\mathbf{R},\mathbf{G},\mathbf{B}$在旧空间中的三刺激值为$X_i,Y_i,Z_i(i=r,g,b)$，即</p>
+<script type="math/tex; mode=display">
+\begin{split}
+\mathbf{R}&=X_r\mathbf{X}+Y_r\mathbf{Y}+Z_r\mathbf{Z}\\
+\mathbf{G}&=X_g\mathbf{X}+Y_g\mathbf{Y}+Z_g\mathbf{Z}\\
+\mathbf{B}&=X_b\mathbf{X}+Y_b\mathbf{Y}+Z_b\mathbf{Z}
+\end{split}</script><p>&emsp;对照颜色匹配方程，可得</p>
+<script type="math/tex; mode=display">
+X\mathbf{X}+Y\mathbf{Y}+Z\mathbf{Z}=R\mathbf{R}+G\mathbf{G}+B\mathbf{B}</script><p>&emsp;联立以上式子，整理得到</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+X\\Y\\Z
+\end{bmatrix}=
+\begin{bmatrix}
+X_r&X_g&X_b\\
+Y_r&Y_g&Y_b\\
+Z_r&Z_g&Z_b
+\end{bmatrix}
+\begin{bmatrix}
+R\\G\\B
+\end{bmatrix}</script><p>&emsp;为了确定这些系数，设$x_i,y_i,z_i(i=r,g,b)$是对应的色品坐标，</p>
+<script type="math/tex; mode=display">
+\begin{split}
+C_i&=X_i+Y_i+Z_i\\
+X_i&=C_ix_i\\
+Y_i&=C_iy_i\\
+Z_i&=C_iz_i
+\end{split}</script><p>&emsp;其中，$i=r,g,b$。<br>&emsp;记</p>
+<script type="math/tex; mode=display">
+\begin{split}
+P&=
+\begin{bmatrix}
+x_r&x_g&x_b\\
+y_r&y_g&y_b\\
+z_r&z_g&z_b
+\end{bmatrix}\\
+D&=
+\begin{bmatrix}
+C_r&0&0\\
+0&C_g&0\\
+0&0&C_b
+\end{bmatrix}
+\end{split}</script><p>&emsp;则有$\begin{bmatrix}X&amp;Y&amp;Z\end{bmatrix}^\mathtt{T}=PD\begin{bmatrix}R&amp;G&amp;B\end{bmatrix}^\mathtt{T}$，<br>&emsp;其中$P$是已知的，在CIE 1931 $\mathbf{RGB}$颜色空间于$\mathbf{XYZ}$空间的转化，以等能白光为参照取</p>
+<script type="math/tex; mode=display">
+\begin{matrix}
+x_r=0.73467,&x_g=0.27376,&x_b=0.16658\\
+y_r=0.26533,&y_g=0.71741,&y_b=0.00886\\
+X=Y=Z=1,&R=G=B=1
+\end{matrix}</script><p>&emsp;算得</p>
+<script type="math/tex; mode=display">
+\begin{split}
+PD&=
+\begin{bmatrix}
+0.49000&0.31000&0.20000\\
+0.17697&0.81240&0.01063\\
+0.00000&0.01000&0.99000
+\end{bmatrix}\\
+(PD)^{-1}&=
+\begin{bmatrix}
+2.36461385&-0.89654057&-0.46807328\\
+-0.51516621&1.4264081&0.0887581\\
+0.0052037&-0.01440816&1.00920446
+\end{bmatrix}
+\end{split}</script><p>&emsp;$\mathbf{sRGB}$<strong>颜色空间</strong>(standard RGB color space)是惠普和微软等企业于1996年共同开发的用于显示器、打印机以及互联网的一种色域标准，很多电脑显示器都采用这种标准。对于$\mathbf{sRGB}$颜色空间的线性值与$\mathbf{XYZ}$空间的转化，以D65为参照白取</p>
+<script type="math/tex; mode=display">
+\begin{matrix}
+\begin{matrix}
+x_r=0.6400,&x_g=0.3000,&x_b=0.1500\\
+y_r=0.3300,&y_g=0.6000,&y_b=0.0600\\
+X=0.3127,&Y=0.3290,&Z=1
+\end{matrix}\\
+R=G=B=1
+\end{matrix}</script><p>&emsp;计算得</p>
+<script type="math/tex; mode=display">
+\begin{split}
+PD&=
+\begin{bmatrix}
+0.4124&0.3576&0.1805\\
+0.2126&0.7152&0.0722\\
+0.0193&0.1192&0.9505
+\end{bmatrix}\\
+(PD)^{-1}&=
+\begin{bmatrix}
+3.2410&-1.5374&-0.4986\\
+-0.9692&1.8760&0.0416\\
+0.0556&-0.2040&1.0570
+\end{bmatrix}
+\end{split}</script><p>&emsp;$\mathbf{sRGB}$在完成$\mathbf{RGB}$线性值的计算后，还要进行非线性的伽马校正才能得到最终的结果。对于线性值\mathbf{C}，最终值为</p>
+<script type="math/tex; mode=display">
+C_\mathbf{sRGB}=
+\begin{cases}
+12.92C&&C\leq0.0031308\\
+1.055C^{\frac{1}{2.4}}-0.055&&其他
+\end{cases}</script><p>&emsp;由最终值到线性值的转化为</p>
+<script type="math/tex; mode=display">
+C=
+\begin{cases}
+\frac{C_\mathbf{sRGB}}{12.92}&&C_\mathbf{sRGB}\leq0.04045\\
+\left(\frac{C_\mathbf{sRGB}+0.055}{1.055}\right)^{2.4}&&其他
+\end{cases}</script><hr>
 <h3 id="辐射度量学"><a href="#辐射度量学" class="headerlink" title="辐射度量学"></a>辐射度量学</h3><p><strong><em>辐射能(Radiant energy) $Q$</em></strong><br>&emsp;电磁辐射的能量，单位是焦耳$J$。对于波长为$\lambda$的一个光子携带的能量为$Q=\frac{\hbar c}{\lambda}$，此处$\hbar$是普朗克常数， $\hbar\approx6.626\times10^{-34}kg\cdot m^2/s$，$c$是真空中的光速， $c\approx299,792,458m/s$。</p>
 <p><strong><em>辐射通量(Radiant flux)或辐射功率(Radiant power) $\phi$</em></strong><br>&emsp;电磁辐射通过某一面积发射、传播或接受的功率，单位为$W$，它描述了<strong>单位时间</strong>内的辐射能。</p>
 <script type="math/tex; mode=display">
-\phi=\frac{dQ}{dt}\tag{1}</script><p><img src="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Flux%20on%20spheres.svg" width="25%" height="25%" align="center"/></p>
-<p><strong><em>立体角(solid angle) $\Omega$</em></strong><br>&emsp;立体角定义为球面上的<strong>投影面积</strong>与半径的平方之比，即$\Omega=\frac{A}{r^2}$，对于单位球，可简化为$\Omega=A$，单位是球面度$sr$。</p>
+\phi=\frac{dQ}{dt}\tag{2}</script><p><img src="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Flux%20on%20spheres.svg" alt="这里来自点光源的通量由包围它的球来度量" width="25%" height="25%" align="center"/></p>
+<p><strong><em>立体角(solid angle) $\Omega$</em></strong><br>&emsp;立体角定义为球面上的<strong>投影面积</strong>与半径的平方之比，即$\Omega=\frac{A}{r^2}$，对于单位球，可简化为$\Omega=A$，单位是球面度$sr$。显然，对于球面，其立体角为$4\pi{sr}$，对于半球面，其立体角为$2\pi{sr}$。<br><img src="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Solid%20angle.svg" alt="立体角" width="25%" height="25%" align="center"></p>
 <p><strong><em>辐射照度(irradiance) $E$与辐射出射度(randiant exitance) $M$</em></strong><br>&emsp;辐射照度/辐射出射度指的是照射/离开表面一点处的单位面元上的辐射能通量，单位均为$W/m^2$，它们定义中的面元所对应的立体角是整个半球空间。</p>
 <script type="math/tex; mode=display">
-E=M=\frac{d\phi}{dA}\tag{2}</script><p>&emsp;辐射照度公式可以帮助我们了解<strong>朗伯余弦定律</strong>的由来，它指出到达表面光的能量正比于光方向与表面法线夹角的余弦。考虑面积为$A$，通量为$\phi$的光源照射表面。如果光源直接向下照射表面，则$A_1=A$，于是在$A_1$内任意点的辐射照度为$\frac{\phi}{A}$，然而，如果光源与表面有倾角，则照射的面积更大，假设$A$很小，则$A_2$大致为$\frac{A}{\cos\theta}$，此时$A_2$内任意点的辐射照度为$\frac{\phi\cos\theta}{A}$。</p>
+E=M=\frac{d\phi}{dA}\tag{2}</script><p>&emsp;辐射照度公式可以帮助我们了解<strong>朗伯余弦定律</strong>的由来，它指出到达表面光的能量正比于光方向与表面法线夹角的余弦。考虑面积为$A$，通量为$\phi$的光源照射表面。如果光源直接向下照射表面，则$A_1=A$，于是在$A_1$内任意点的辐射照度为$\frac{\phi}{A}$，然而，如果光源与表面有倾角，则照射的面积更大，假设$A$很小，则$A_2$大致为$\frac{A}{\cos\theta}$，此时$A_2$内任意点的辐射照度为$\frac{\phi\cos\theta}{A}$。<br><img src="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Lamberts%20Law.svg" alt="朗伯余弦定律" width="25%" height="25%" align="center"></p>
 <p><strong><em>辐射强度(Radiant intensity) $I$</em></strong><br>&emsp;辐射强度指在给定方向的单位立体角元内离开点辐射源（或辐射源面元）的辐射通量，单位是$W/sr$。它一般适合于描述（近似）点光源的辐射方向特性，它与立体角的关系为:</p>
 <script type="math/tex; mode=display">
 I=\frac{d\phi}{d\Omega}\tag{3}</script><p>&emsp;强度描述了光的方向分布，但它只对点光源有意义，对于其他光源，辐射强度不够描述，需要用到后面提到的<strong>辐射亮度</strong>。</p>
 <p><strong><em>辐射亮度(radiance) $L$</em></strong><br>&emsp;最后，最关键的辐射量是辐射亮度。辐射亮度指表面一点在垂直于给定方向的单位面元上于该方向的辐射强度，单位是$W/(sr\cdot{m^2})$，它与其他辐射量的关系是:</p>
 <script type="math/tex; mode=display">
-L=\frac{dI}{\cos\theta{dA}}=\frac{d^2\phi}{\cos\theta{dA}d\Omega}=\frac{dE}{\cos\theta{d\Omega}}\tag{4}</script><p>&emsp;其中，$\theta$是曲面法线与给定方向的夹角。</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://TaaiWai.github.io">Guo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://taaiwai.github.io/2023/01/29/%E9%A2%9C%E8%89%B2%E5%92%8C%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/">http://taaiwai.github.io/2023/01/29/%E9%A2%9C%E8%89%B2%E5%92%8C%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://TaaiWai.github.io" target="_blank">登高望远，湛蓝无限</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PBRT/">PBRT</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Guo</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">辐射度量学</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/29/%E9%A2%9C%E8%89%B2%E5%92%8C%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/" title="颜色和辐射度量学">颜色和辐射度量学</a><time datetime="2023-01-28T16:00:00.000Z" title="发表于 2023-01-29 00:00:00">2023-01-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By Guo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+L=\frac{dI}{\cos\theta{dA}}=\frac{d^2\phi}{\cos\theta{dA}d\Omega}=\frac{dE}{\cos\theta{d\Omega}}\tag{4}</script><p>&emsp;其中，$\theta$是曲面法线与给定方向的夹角。<br><img src="https://www.pbr-book.org/3ed-2018/Color_and_Radiometry/Radiance.svg" alt="$dA^\bot=dA\cos\theta$" width="25%" height="25%" algin="center"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://TaaiWai.github.io">Guo</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://taaiwai.github.io/2023/01/29/%E9%A2%9C%E8%89%B2%E5%92%8C%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/">http://taaiwai.github.io/2023/01/29/%E9%A2%9C%E8%89%B2%E5%92%8C%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://TaaiWai.github.io" target="_blank">登高望远，湛蓝无限</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PBRT/">PBRT</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Guo</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%89%B2%E5%BA%A6%E5%AD%A6"><span class="toc-number">1.</span> <span class="toc-text">色度学</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E5%8C%B9%E9%85%8D"><span class="toc-number">1.1.</span> <span class="toc-text">颜色匹配</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%9C%E8%89%B2%E7%A9%BA%E9%97%B4%E7%9A%84%E8%BD%AC%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">颜色空间的转化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6"><span class="toc-number">2.</span> <span class="toc-text">辐射度量学</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/29/%E9%A2%9C%E8%89%B2%E5%92%8C%E8%BE%90%E5%B0%84%E5%BA%A6%E9%87%8F%E5%AD%A6/" title="颜色和辐射度量学">颜色和辐射度量学</a><time datetime="2023-01-28T16:00:00.000Z" title="发表于 2023-01-29 00:00:00">2023-01-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 By Guo</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
   window.MathJax = {
     tex: {
       inlineMath: [ ['$','$'], ["\\(","\\)"]],
